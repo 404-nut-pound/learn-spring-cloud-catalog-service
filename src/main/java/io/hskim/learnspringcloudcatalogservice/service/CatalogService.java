@@ -42,7 +42,10 @@ public class CatalogService {
     return catalogRepo
       .findAll(
         Example.of(
-          CatalogEntity.builder().build(),
+          CatalogEntity
+            .builder()
+            .productName(catalogSearchDto.getProductName())
+            .build(),
           ExampleMatcher
             .matchingAny()
             .withMatcher("productName", matcher -> matcher.contains())
