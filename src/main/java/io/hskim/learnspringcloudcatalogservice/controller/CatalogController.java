@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/{serviceType}")
+@RequestMapping(value = "/catalog")
 @RequiredArgsConstructor
 public class CatalogController {
 
@@ -25,7 +25,6 @@ public class CatalogController {
 
   @PostMapping
   public CatalogResponseDto postCatalog(
-    @PathVariable String serviceType,
     @Validated(
       value = ValidatedPostGroup.class
     ) @RequestBody CatalogRequestDto catalogRequestDto
@@ -35,7 +34,6 @@ public class CatalogController {
 
   @GetMapping
   public Page<CatalogResponseDto> getCatalogList(
-    @PathVariable String serviceType,
     CatalogSearchDto catalogSearchDto,
     Pageable pageable
   ) {
@@ -43,10 +41,7 @@ public class CatalogController {
   }
 
   @GetMapping(value = "/{catalogId}")
-  public CatalogResponseDto getCatalog(
-    @PathVariable String serviceType,
-    @PathVariable String catalogId
-  ) {
+  public CatalogResponseDto getCatalog(@PathVariable String catalogId) {
     return catalogService.getCatalog(catalogId).toDto();
   }
 }
