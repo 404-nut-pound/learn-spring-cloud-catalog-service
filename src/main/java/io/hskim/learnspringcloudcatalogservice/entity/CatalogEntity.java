@@ -23,7 +23,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.util.StringUtils;
 
@@ -60,7 +60,7 @@ public class CatalogEntity {
   @Comment(value = "상품 단가")
   private int unitPrice;
 
-  @CreatedDate
+  @LastModifiedDate
   @Column(nullable = false)
   @ColumnDefault(value = "now()")
   @Comment(value = "수정일시")
