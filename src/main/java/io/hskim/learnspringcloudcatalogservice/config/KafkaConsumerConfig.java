@@ -20,7 +20,7 @@ public class KafkaConsumerConfig {
     Map<String, Object> propertiesMap = new ConcurrentHashMap<>();
     propertiesMap.put(
       ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-      "localhost:9092"
+      "127.0.0.1:9092"
     );
     propertiesMap.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroupId");
     propertiesMap.put(

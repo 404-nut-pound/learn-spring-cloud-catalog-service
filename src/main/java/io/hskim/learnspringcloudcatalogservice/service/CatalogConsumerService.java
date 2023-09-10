@@ -30,12 +30,12 @@ public class CatalogConsumerService {
       );
 
       CatalogEntity findCatalogEntity = catalogRepo
-        .findById(UUID.fromString(kafkaMessageMap.get("productId").toString()))
+        .findById(UUID.fromString(kafkaMessageMap.get("catalogId").toString()))
         .orElseThrow();
 
       findCatalogEntity.setStock(
         findCatalogEntity.getStock() -
-        Integer.parseInt(kafkaMessageMap.getOrDefault("stock", "0").toString())
+        Integer.parseInt(kafkaMessageMap.getOrDefault("qty", "0").toString())
       );
     } catch (JsonProcessingException e) {
       e.printStackTrace();
