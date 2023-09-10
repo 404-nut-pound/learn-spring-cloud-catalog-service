@@ -4,7 +4,6 @@ import io.hskim.learnspringcloudcatalogservice.entity.CatalogEntity;
 import io.hskim.learnspringcloudcatalogservice.repo.CatalogRepo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,11 +27,7 @@ public class LocalTestData {
 
     public void init() {
       catalogRepo
-        .findOne(
-          Example.of(
-            CatalogEntity.builder().productName("일본 여행 상품").build()
-          )
-        )
+        .findByProductName("일본 여행 상품")
         .orElseGet(() ->
           catalogRepo.save(
             CatalogEntity
@@ -45,11 +40,7 @@ public class LocalTestData {
         );
 
       catalogRepo
-        .findOne(
-          Example.of(
-            CatalogEntity.builder().productName("필리핀 여행 상품").build()
-          )
-        )
+        .findByProductName("필리핀 여행 상품")
         .orElseGet(() ->
           catalogRepo.save(
             CatalogEntity
@@ -62,11 +53,7 @@ public class LocalTestData {
         );
 
       catalogRepo
-        .findOne(
-          Example.of(
-            CatalogEntity.builder().productName("대만 여행 상품").build()
-          )
-        )
+        .findByProductName("대만 여행 상품")
         .orElseGet(() ->
           catalogRepo.save(
             CatalogEntity
