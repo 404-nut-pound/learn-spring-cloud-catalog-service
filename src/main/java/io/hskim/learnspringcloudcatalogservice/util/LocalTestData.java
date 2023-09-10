@@ -4,6 +4,7 @@ import io.hskim.learnspringcloudcatalogservice.entity.CatalogEntity;
 import io.hskim.learnspringcloudcatalogservice.repo.CatalogRepo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,32 +27,56 @@ public class LocalTestData {
     private final CatalogRepo catalogRepo;
 
     public void init() {
-      catalogRepo.save(
-        CatalogEntity
-          .builder()
-          .productName("일본 여행 상품")
-          .stock(100)
-          .unitPrice(1000000)
-          .build()
-      );
+      catalogRepo
+        .findOne(
+          Example.of(
+            CatalogEntity.builder().productName("일본 여행 상품").build()
+          )
+        )
+        .orElseGet(() ->
+          catalogRepo.save(
+            CatalogEntity
+              .builder()
+              .productName("일본 여행 상품")
+              .stock(100)
+              .unitPrice(1000000)
+              .build()
+          )
+        );
 
-      catalogRepo.save(
-        CatalogEntity
-          .builder()
-          .productName("필리핀 여행 상품")
-          .stock(120)
-          .unitPrice(1200000)
-          .build()
-      );
+      catalogRepo
+        .findOne(
+          Example.of(
+            CatalogEntity.builder().productName("필리핀 여행 상품").build()
+          )
+        )
+        .orElseGet(() ->
+          catalogRepo.save(
+            CatalogEntity
+              .builder()
+              .productName("필리핀 여행 상품")
+              .stock(120)
+              .unitPrice(1200000)
+              .build()
+          )
+        );
 
-      catalogRepo.save(
-        CatalogEntity
-          .builder()
-          .productName("대만 여행 상품")
-          .stock(150)
-          .unitPrice(1500000)
-          .build()
-      );
+      catalogRepo
+        .findOne(
+          Example.of(
+            CatalogEntity.builder().productName("대만 여행 상품").build()
+          )
+        )
+        .orElseGet(() ->
+          catalogRepo.save(
+            CatalogEntity
+              .builder()
+              .productName("대만 여행 상품")
+              .stock(150)
+              .unitPrice(1500000)
+              .build()
+          )
+        );
     }
   }
 }
